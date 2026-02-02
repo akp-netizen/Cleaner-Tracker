@@ -33,7 +33,7 @@
       color: var(--text);
       min-height: 100vh;
       padding: 20px;
-      padding-bottom: 100px;
+      padding-bottom: 110px;
     }
 
     .container { max-width: 1400px; margin: 0 auto; }
@@ -50,12 +50,39 @@
 
     .tagline { color: var(--text-dim); font-size: 1rem; margin-bottom: 18px; }
 
-    .streak-hero {
+    .panel {
       background: var(--surface);
       border-radius: 20px;
       padding: 18px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
+
+    .topbar {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+
+    .pillrow {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .pill span { color: #FCD34D; }
 
     .mode-toggle { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 
@@ -67,7 +94,7 @@
       border: 2px solid transparent;
       border-radius: 12px;
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
 
@@ -80,6 +107,7 @@
       border-radius: 15px;
       padding: 20px;
       border-top: 4px solid;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .task-card.kitchen { border-top-color: var(--kitchen); }
@@ -107,7 +135,7 @@
       font-size: 0.75rem;
       background: var(--daily);
       color: var(--bg);
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.04em;
     }
 
@@ -124,7 +152,8 @@
       user-select: none;
     }
 
-    .task-item:active { background: rgba(255,255,255,0.1); }
+    .task-item:hover { background: rgba(255,255,255,0.075); }
+    .task-item:active { background: rgba(255,255,255,0.12); }
 
     .checkbox {
       width: 24px;
@@ -139,7 +168,7 @@
 
     .task-item.completed .checkbox { background: var(--success); border-color: var(--success); }
     .task-item.completed .checkbox::after { content: '✓'; color: white; font-weight: bold; }
-    .task-item.completed .task-text { text-decoration: line-through; opacity: 0.6; }
+    .task-item.completed .task-text { text-decoration: line-through; opacity: 0.65; }
 
     .task-text { flex: 1; font-size: 0.95rem; }
 
@@ -175,7 +204,8 @@
       background: var(--basement);
       border-radius: 15px;
       padding: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .timer-display {
@@ -187,7 +217,7 @@
 
     .timer-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    .timer-btn {
+    .btn {
       flex: 1;
       min-width: 160px;
       padding: 12px;
@@ -195,47 +225,15 @@
       border: none;
       border-radius: 10px;
       color: white;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .timer-btn:active { background: rgba(255,255,255,0.3); }
-
-    .reset-btn {
-      padding: 8px 14px;
-      background: var(--danger);
-      border: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .topbar {
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom: 10px;
-    }
-
-    .pillrow {
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .pill {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 8px 12px;
-      border-radius: 999px;
       font-weight: 900;
+      cursor: pointer;
     }
 
-    .pill span { color: #FCD34D; }
+    .btn:active { background: rgba(255,255,255,0.3); }
+
+    .danger {
+      background: var(--danger) !important;
+    }
 
     /* Sparkles */
     .spark {
@@ -261,7 +259,7 @@
       padding:20px;
     }
     .modal {
-      max-width: 680px;
+      max-width: 700px;
       margin: 60px auto;
       background: var(--surface);
       border-radius: 16px;
@@ -275,13 +273,10 @@
       gap:10px;
       margin-bottom: 8px;
     }
-    .modalTitle h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.5rem;
-    }
+    .modalTitle h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; }
     .modalHint { color: var(--text-dim); margin-bottom: 12px; }
     .modalList { display:grid; gap:10px; }
-    .small { font-size: 0.9rem; color: var(--text-dim); }
+    .small { font-size: 0.9rem; color: var(--text-dim); line-height: 1.35; }
 
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
@@ -294,48 +289,42 @@
   <div class="container">
     <header>
       <h1>✨ Clean House, Clear Mind</h1>
-      <p class="tagline">Your ADHD-friendly cleaning companion (with loot drops)</p>
+      <p class="tagline">ADHD-friendly cleaning companion (calendar-based ✨)</p>
     </header>
 
-    <!-- Top HUD -->
-    <div class="streak-hero">
+    <!-- HUD -->
+    <div class="panel">
       <div class="topbar">
         <div class="pillrow">
+          <div class="pill">📅 Today: <span id="todayLabel">—</span></div>
           <div class="pill">🪙 Coins: <span id="coinCount">0</span></div>
           <div class="pill">🛡️ Shields: <span id="shieldCount">0</span></div>
           <div class="pill">🔥 Streak: <span id="streakNumber">0</span></div>
         </div>
         <div class="pillrow">
-          <button class="timer-btn" onclick="openShop()">🛍️ Dopamine Shop</button>
-          <button class="timer-btn" onclick="openLootLog()">🎁 Loot Log</button>
-          <button class="reset-btn" onclick="resetAll()">Hard Reset</button>
+          <button class="btn" id="openShopBtn">🛍️ Dopamine Shop</button>
+          <button class="btn" id="openLootBtn">🎁 Loot Log</button>
+          <button class="btn danger" id="hardResetBtn">Hard Reset</button>
         </div>
       </div>
 
-      <div class="pillrow" style="margin-top: 10px;">
-        <button class="timer-btn" onclick="manualStart('daily')">🌞 Start New Day</button>
-        <button class="timer-btn" onclick="manualStart('weekly')">📆 Start New Week</button>
-        <button class="timer-btn" onclick="manualStart('monthly')">🌙 Start New Month</button>
-        <button class="timer-btn" onclick="manualStart('yearly')">✨ Start New Year</button>
-      </div>
-
-      <div id="dopamineText" style="margin-top:10px; color: var(--text-dim);">
-        Pick ONE tiny quest. We do not require perfection. We require existence.
+      <div id="dopamineText" class="small">
+        Pick ONE tiny quest. Coins happen. Magic happens.
       </div>
     </div>
 
-    <!-- Mode toggle -->
-    <div class="mode-toggle">
-      <button class="mode-btn active" onclick="setMode('regular')">✨ Regular Mode</button>
-      <button class="mode-btn" onclick="setMode('struggling')">💙 Bare Minimum</button>
+    <!-- Mode -->
+    <div class="mode-toggle" id="modeToggle">
+      <button class="mode-btn active" data-mode="regular">✨ Regular Mode</button>
+      <button class="mode-btn" data-mode="struggling">💙 Bare Minimum</button>
     </div>
 
-    <!-- Frequency toggle -->
-    <div class="mode-toggle">
-      <button class="mode-btn active" onclick="setFrequency('daily')">🌞 Daily</button>
-      <button class="mode-btn" onclick="setFrequency('weekly')">📆 Weekly</button>
-      <button class="mode-btn" onclick="setFrequency('monthly')">🌙 Monthly</button>
-      <button class="mode-btn" onclick="setFrequency('yearly')">✨ Yearly</button>
+    <!-- Frequency -->
+    <div class="mode-toggle" id="freqToggle">
+      <button class="mode-btn active" data-freq="daily">🌞 Daily</button>
+      <button class="mode-btn" data-freq="weekly">📆 Weekly</button>
+      <button class="mode-btn" data-freq="monthly">🌙 Monthly</button>
+      <button class="mode-btn" data-freq="yearly">✨ Yearly</button>
     </div>
 
     <!-- Laundry timer -->
@@ -343,9 +332,9 @@
       <h3 style="font-family:'Fraunces', serif;">🧺 Laundry Timer</h3>
       <div class="timer-display" id="timerDisplay">--:--</div>
       <div class="timer-buttons">
-        <button class="timer-btn" onclick="startTimer(45)">Washer 45m</button>
-        <button class="timer-btn" onclick="startTimer(60)">Dryer 60m</button>
-        <button class="timer-btn" onclick="stopTimer()">Stop</button>
+        <button class="btn" id="washerBtn">Washer 45m</button>
+        <button class="btn" id="dryerBtn">Dryer 60m</button>
+        <button class="btn" id="stopTimerBtn">Stop</button>
       </div>
     </div>
 
@@ -358,21 +347,22 @@
     <div class="modal">
       <div class="modalTitle">
         <h2>🛍️ Dopamine Shop</h2>
-        <button class="reset-btn" onclick="closeShop()">Close</button>
+        <button class="btn danger" id="closeShopBtn" style="min-width:auto;">Close</button>
       </div>
-      <div class="modalHint">Spend coins on rewards. Buy shields to protect streaks. Yes, that’s allowed.</div>
+      <div class="modalHint">Spend coins on rewards. Buy shields to protect streaks (for missed days).</div>
 
       <div class="modalList">
-        <button class="timer-btn" onclick="buyShield()">🛡️ Buy 1 Shield (25 coins)</button>
-        <button class="timer-btn" onclick="buyReward('☕ Fancy drink token', 15)">☕ Fancy drink token (15)</button>
-        <button class="timer-btn" onclick="buyReward('🍫 Sweet treat token', 10)">🍫 Sweet treat token (10)</button>
-        <button class="timer-btn" onclick="buyReward('🛋️ 20-min guilt-free rest', 20)">🛋️ 20-min guilt-free rest (20)</button>
-        <button class="timer-btn" onclick="buyReward('🎧 Music + clean dance break', 12)">🎧 Music + clean dance break (12)</button>
-        <button class="timer-btn" onclick="buyReward('🕯️ Cozy reset ritual', 18)">🕯️ Cozy reset ritual (18)</button>
+        <button class="btn" id="buyShieldBtn">🛡️ Buy 1 Shield (25 coins)</button>
+        <button class="btn shopItem" data-cost="15" data-label="☕ Fancy drink token">☕ Fancy drink token (15)</button>
+        <button class="btn shopItem" data-cost="10" data-label="🍫 Sweet treat token">🍫 Sweet treat token (10)</button>
+        <button class="btn shopItem" data-cost="20" data-label="🛋️ 20-min guilt-free rest">🛋️ 20-min guilt-free rest (20)</button>
+        <button class="btn shopItem" data-cost="12" data-label="🎧 Music + clean dance break">🎧 Music + clean dance break (12)</button>
+        <button class="btn shopItem" data-cost="18" data-label="🕯️ Cozy reset ritual">🕯️ Cozy reset ritual (18)</button>
       </div>
 
       <div class="small" style="margin-top: 12px;">
-        Tip: Shields trigger when you start a new day without doing at least one Daily task.
+        Streak rule: If you completed <strong>at least 1 Daily task</strong> yesterday, your streak continues.
+        If not, a shield can save it. Otherwise it resets. No shame—just mechanics.
       </div>
     </div>
   </div>
@@ -382,12 +372,12 @@
     <div class="modal">
       <div class="modalTitle">
         <h2>🎁 Loot Log</h2>
-        <button class="reset-btn" onclick="closeLootLog()">Close</button>
+        <button class="btn danger" id="closeLootBtn" style="min-width:auto;">Close</button>
       </div>
-      <div class="modalHint">Your wins count. Receipts for your brain.</div>
+      <div class="modalHint">Receipts for your brain. Wins are real.</div>
       <div id="lootList" class="modalList"></div>
       <div class="small" style="margin-top: 12px;">
-        Loot drops happen when you complete a room (100% progress).
+        Loot drops happen when you complete a room (100% progress) for the current time period.
       </div>
     </div>
   </div>
@@ -520,11 +510,11 @@
     var timerInterval = null;
     var timerEndTime = null;
 
-    // -------------------- DOPAMINE / REWARDS --------------------
+    // -------------------- DOPAMINE --------------------
     var REWARDS = [
       "✨ Nice. That counts. Your brain likes receipts.",
       "🪄 You just cast 'Cleanus Minimus'. It's effective.",
-      "🔥 Momentum achieved. Keep it messy in your favor.",
+      "🔥 Momentum achieved. Keep going — tiny is mighty.",
       "💎 Dopamine acquired. Collect another?",
       "🌈 Look at you being a functional wizard.",
       "🧠 Executive function cameo. Rare drop!"
@@ -547,19 +537,18 @@
     }
 
     function popConfetti() {
-      for (var i = 0; i < 16; i++) {
+      for (var i = 0; i < 14; i++) {
         var s = document.createElement('span');
         s.className = 'spark';
         s.textContent = ['✨','💫','⭐','🌟'][Math.floor(Math.random()*4)];
         s.style.left = (50 + (Math.random()*70 - 35)) + '%';
-        s.style top = (25 + Math.random()*20) + '%';
         s.style.top = (25 + Math.random()*20) + '%';
         document.body.appendChild(s);
         (function(node){ setTimeout(function(){ node.remove(); }, 900); })(s);
       }
     }
 
-    // -------------------- AUDIO (no external files) --------------------
+    // -------------------- AUDIO --------------------
     function playDing(type) {
       try {
         var ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -572,9 +561,11 @@
         var freq = 880;
         var dur = 0.08;
 
-        if (type === 'loot') { freq = 1046.5; dur = 0.12; }
-        if (type === 'buy') { freq = 659.25; dur = 0.10; }
+        if (type === 'task')   { freq = 880; dur = 0.07; }
+        if (type === 'loot')   { freq = 1046.5; dur = 0.12; }
+        if (type === 'buy')    { freq = 659.25; dur = 0.10; }
         if (type === 'shield') { freq = 523.25; dur = 0.10; }
+        if (type === 'nope')   { freq = 220; dur = 0.10; }
 
         o.type = 'sine';
         o.frequency.setValueAtTime(freq, now);
@@ -589,57 +580,51 @@
       } catch(e) {}
     }
 
-    // -------------------- MANUAL CYCLES --------------------
-    function getManualCycleId(freq) {
-      var key = 'cycleId_' + freq;
-      var val = localStorage.getItem(key);
-      if (!val) {
-        val = String(Date.now());
-        localStorage.setItem(key, val);
-      }
-      return val;
+    // -------------------- DATE KEYS (CALENDAR-BASED) --------------------
+    function ymd(d) {
+      var yyyy = d.getFullYear();
+      var mm = String(d.getMonth() + 1).padStart(2, '0');
+      var dd = String(d.getDate()).padStart(2, '0');
+      return yyyy + '-' + mm + '-' + dd;
     }
 
-    function bumpManualCycleId(freq) {
-      var key = 'cycleId_' + freq;
-      var val = String(Date.now());
-      localStorage.setItem(key, val);
-      return val;
+    function getWeekKey(d) {
+      // ISO-ish week key: YYYY-W##
+      var date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      var dayNum = date.getUTCDay() || 7;
+      date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+      var yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+      var weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+      return date.getUTCFullYear() + '-W' + String(weekNo).padStart(2, '0');
     }
 
-    function getPeriodKey(freq) {
-      return freq.toUpperCase() + ':' + getManualCycleId(freq);
+    function getPeriodKey(freq, dateObj) {
+      var d = dateObj || new Date();
+      if (freq === 'daily')   return 'D:' + ymd(d);
+      if (freq === 'weekly')  return 'W:' + getWeekKey(d);
+      if (freq === 'monthly') return 'M:' + d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+      if (freq === 'yearly')  return 'Y:' + d.getFullYear();
+      return 'D:' + ymd(d);
     }
 
     // -------------------- STORAGE HELPERS --------------------
     function loadData() {
-      try {
-        var saved = localStorage.getItem('cleaningTasksV3');
-        return saved ? JSON.parse(saved) : {};
-      } catch(e) { return {}; }
+      try { return JSON.parse(localStorage.getItem('cleaningTasksV4') || '{}'); }
+      catch(e) { return {}; }
     }
 
     function saveData(data) {
-      try { localStorage.setItem('cleaningTasksV3', JSON.stringify(data)); } catch(e) {}
+      try { localStorage.setItem('cleaningTasksV4', JSON.stringify(data)); } catch(e) {}
     }
 
     function getCoins() { return parseInt(localStorage.getItem('coins') || '0', 10); }
-    function setCoins(n) { localStorage.setItem('coins', String(Math.max(0, n))); updateTopBar(); }
+    function setCoins(n) { localStorage.setItem('coins', String(Math.max(0, n))); updateHUD(); }
 
     function getShields() { return parseInt(localStorage.getItem('shields') || '0', 10); }
-    function setShields(n) { localStorage.setItem('shields', String(Math.max(0, n))); updateTopBar(); }
+    function setShields(n) { localStorage.setItem('shields', String(Math.max(0, n))); updateHUD(); }
 
     function getStreak() { return parseInt(localStorage.getItem('cleaningStreak') || '0', 10); }
-    function setStreak(n) { localStorage.setItem('cleaningStreak', String(Math.max(0, n))); updateTopBar(); }
-
-    function updateTopBar() {
-      var c = document.getElementById('coinCount');
-      var s = document.getElementById('shieldCount');
-      var st = document.getElementById('streakNumber');
-      if (c) c.textContent = String(getCoins());
-      if (s) s.textContent = String(getShields());
-      if (st) st.textContent = String(getStreak());
-    }
+    function setStreak(n) { localStorage.setItem('cleaningStreak', String(Math.max(0, n))); updateHUD(); }
 
     function getLootLog() {
       try { return JSON.parse(localStorage.getItem('lootLog') || '[]'); } catch(e) { return []; }
@@ -647,75 +632,103 @@
     function addLootLog(entry) {
       var log = getLootLog();
       log.unshift(entry);
-      log = log.slice(0, 50);
+      log = log.slice(0, 60);
       localStorage.setItem('lootLog', JSON.stringify(log));
     }
 
     function getRoomLootedMap() {
       try { return JSON.parse(localStorage.getItem('roomLootedMap') || '{}'); } catch(e) { return {}; }
     }
-    function setRoomLootedMap(obj) {
-      localStorage.setItem('roomLootedMap', JSON.stringify(obj));
+    function setRoomLootedMap(obj) { localStorage.setItem('roomLootedMap', JSON.stringify(obj)); }
+
+    function updateHUD() {
+      document.getElementById('coinCount').textContent = String(getCoins());
+      document.getElementById('shieldCount').textContent = String(getShields());
+      document.getElementById('streakNumber').textContent = String(getStreak());
+      document.getElementById('todayLabel').textContent = new Date().toLocaleDateString();
     }
 
-    // -------------------- SHOP + LOOT UI --------------------
-    function openShop() { document.getElementById('shopModal').style.display = 'block'; }
-    function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
+    // -------------------- STREAK (CALENDAR-BASED) --------------------
+    // Rule: streak counts consecutive calendar days where you completed at least 1 DAILY task.
+    // If you miss a day, a shield can cover it (one shield per missed day, used automatically).
+    function dayHadAnyDailyTask(dateObj) {
+      var data = loadData();
+      var key = getPeriodKey('daily', dateObj);
+      var dayData = data[key];
+      if (!dayData) return false;
 
-    function openLootLog() {
-      renderLootLog();
-      document.getElementById('lootModal').style.display = 'block';
+      for (var cat in dayData) {
+        if (!dayData.hasOwnProperty(cat)) continue;
+        var obj = dayData[cat];
+        for (var idx in obj) {
+          if (obj.hasOwnProperty(idx) && obj[idx] === true) return true;
+        }
+      }
+      return false;
     }
-    function closeLootLog() { document.getElementById('lootModal').style.display = 'none'; }
 
-    function renderLootLog() {
-      var list = document.getElementById('lootList');
-      if (!list) return;
-      list.innerHTML = '';
+    function daysBetween(a, b) {
+      // whole-day diff between dates (local midnight)
+      var aa = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+      var bb = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+      return Math.round((bb - aa) / 86400000);
+    }
 
-      var log = getLootLog();
-      if (log.length === 0) {
-        list.innerHTML = '<div class="small">No loot yet. Complete a room to trigger a loot drop ✨</div>';
+    function reconcileStreak() {
+      // Called on load and after completing a task.
+      var lastChecked = localStorage.getItem('streakLastChecked'); // ymd
+      var today = new Date();
+      var todayKey = ymd(today);
+
+      if (!lastChecked) {
+        localStorage.setItem('streakLastChecked', todayKey);
+        // don't auto change streak on first run; just keep what user has
         return;
       }
 
-      log.forEach(function(item) {
-        var div = document.createElement('div');
-        div.style.background = 'rgba(255,255,255,0.06)';
-        div.style.border = '1px solid rgba(255,255,255,0.10)';
-        div.style.borderRadius = '12px';
-        div.style.padding = '10px';
-        div.innerHTML = '<div style="font-weight:900;">' + escapeHtml(item.title) + '</div>' +
-                        '<div class="small">' + escapeHtml(item.when) + '</div>';
-        list.appendChild(div);
-      });
+      if (lastChecked === todayKey) return;
+
+      var prev = new Date(lastChecked + 'T12:00:00'); // safe parse
+      var gap = daysBetween(prev, today); // number of days since last check
+
+      // Walk through each missing day
+      for (var i = 1; i <= gap; i++) {
+        var checkDay = new Date(prev);
+        checkDay.setDate(prev.getDate() + i);
+
+        // if we already have daily completion that day: streak continues naturally
+        // if not, try shield; if none, streak resets to 0
+        if (!dayHadAnyDailyTask(checkDay)) {
+          var shields = getShields();
+          if (shields > 0) {
+            setShields(shields - 1);
+            addLootLog({ title: "🛡️ Shield used to protect streak for " + checkDay.toLocaleDateString(), when: new Date().toLocaleString() });
+          } else {
+            setStreak(0);
+          }
+        }
+      }
+
+      localStorage.setItem('streakLastChecked', todayKey);
+      updateHUD();
     }
 
-    function buyShield() {
-      var coins = getCoins();
-      if (coins < 25) {
-        dopamine("🚫 Not enough coins. Do one tiny task and we’ll talk.");
-        playDing('nope');
-        return;
-      }
-      setCoins(coins - 25);
-      setShields(getShields() + 1);
-      addLootLog({ title: "🛡️ Bought a shield (-25 coins)", when: new Date().toLocaleString() });
-      dopamine("🛡️ Shield acquired. Future you is protected.");
-      playDing('shield');
-    }
+    function bumpStreakIfNeededToday() {
+      // If user completes their first daily task of the day, and yesterday was valid, streak increments.
+      // We only increment once per day.
+      var today = new Date();
+      var todayY = ymd(today);
 
-    function buyReward(label, cost) {
-      var coins = getCoins();
-      if (coins < cost) {
-        dopamine("🚫 Not enough coins. Tiny quest first.");
-        playDing('nope');
-        return;
-      }
-      setCoins(coins - cost);
-      addLootLog({ title: "✅ Redeemed: " + label + " (-" + cost + " coins)", when: new Date().toLocaleString() });
-      dopamine("✅ Reward redeemed: " + label + " — go enjoy it like it’s a rule.");
-      playDing('buy');
+      var already = localStorage.getItem('streakCountedFor') || '';
+      if (already === todayY) return;
+
+      // If streak is 0, set to 1 when first daily task happens.
+      // If streak > 0, we still set "counted" to prevent multiple increments.
+      var current = getStreak();
+      if (current === 0) setStreak(1);
+      else setStreak(current + 1);
+
+      localStorage.setItem('streakCountedFor', todayY);
     }
 
     // -------------------- TASK COMPLETION --------------------
@@ -728,29 +741,10 @@
     function setTaskCompleted(freq, category, taskIndex, value) {
       var data = loadData();
       var key = getPeriodKey(freq);
-
       if (!data[key]) data[key] = {};
       if (!data[key][category]) data[key][category] = {};
       data[key][category][taskIndex] = !!value;
-
       saveData(data);
-    }
-
-    function toggleTask(freq, category, taskIndex) {
-      var was = isTaskCompleted(freq, category, taskIndex);
-      var nowVal = !was;
-      setTaskCompleted(freq, category, taskIndex, nowVal);
-
-      if (nowVal) {
-        // coin per task + ding
-        setCoins(getCoins() + 1);
-        playDing('task');
-        dopamine();
-      }
-
-      renderTasks();
-      // room loot check after render so % is correct
-      maybeDropRoomLoot(freq, category);
     }
 
     function getRoomProgress(freq, category, tasks) {
@@ -764,7 +758,6 @@
     }
 
     function maybeDropRoomLoot(freq, category) {
-      // only when 100% AND not already looted for this room in this cycle
       var taskSet = TASKS[currentMode] && TASKS[currentMode][freq] ? TASKS[currentMode][freq] : {};
       if (!taskSet[category]) return;
 
@@ -781,7 +774,6 @@
       lootedMap[lootKey] = true;
       setRoomLootedMap(lootedMap);
 
-      // drop loot
       var drop = LOOT_TABLE[Math.floor(Math.random() * LOOT_TABLE.length)];
       setCoins(getCoins() + drop.coins);
 
@@ -794,104 +786,14 @@
       playDing('loot');
     }
 
-    // -------------------- STREAK + SHIELD SYSTEM --------------------
-    // Rule: Streak is based on "New Day" presses.
-    // If you start a new day and you DID at least one daily task in the previous day cycle -> streak +1
-    // If you did none -> use shield if available (streak stays), otherwise streak resets to 0
-    function dailyCycleHadAnyTask(cycleId) {
-      var data = loadData();
-      var key = 'DAILY:' + cycleId;
-      var dayData = data[key];
-      if (!dayData) return false;
-
-      // any true in any category
-      for (var cat in dayData) {
-        if (!dayData.hasOwnProperty(cat)) continue;
-        var obj = dayData[cat];
-        for (var idx in obj) {
-          if (obj.hasOwnProperty(idx) && obj[idx] === true) return true;
-        }
-      }
-      return false;
-    }
-
-    function manualStart(freq) {
-      if (!confirm("Start a new " + freq + "? This resets the checklist for that period.")) return;
-
-      // If starting a new day, handle streak + shield.
-      if (freq === 'daily') {
-        var prevCycle = getManualCycleId('daily');
-        var didSomething = dailyCycleHadAnyTask(prevCycle);
-
-        if (didSomething) {
-          setStreak(getStreak() + 1);
-          dopamine("🔥 Streak +1! You did at least one thing. That’s the whole spell.");
-        } else {
-          var shields = getShields();
-          if (shields > 0) {
-            setShields(shields - 1);
-            dopamine("🛡️ Shield used. Streak protected. We do not punish survival.");
-            addLootLog({ title: "🛡️ Shield used to protect streak", when: new Date().toLocaleString() });
-            playDing('shield');
-          } else {
-            setStreak(0);
-            dopamine("💙 New day. Fresh start. No shame. Pick ONE tiny quest.");
-          }
-        }
-      }
-
-      // bump cycle
-      bumpManualCycleId(freq);
-
-      // also clear room-looted flags for that freq cycle naturally (they key off cycle id)
-      renderTasks();
-      updateTopBar();
-      playDing('buy');
-    }
-
-    // -------------------- MODE + FREQUENCY --------------------
-    function setMode(mode) {
-      currentMode = mode;
-
-      var toggles = document.querySelectorAll('.mode-toggle');
-      var modeBtns = toggles[0].querySelectorAll('.mode-btn');
-      modeBtns.forEach(function(btn){ btn.classList.remove('active'); });
-      if (mode === 'regular') modeBtns[0].classList.add('active');
-      else modeBtns[1].classList.add('active');
-
-      dopamine(mode === 'regular'
-        ? "✨ Full spellbook unlocked. Pick ONE tiny win."
-        : "💙 Bare minimum mode. Tiny is mighty."
-      );
-
-      renderTasks();
-    }
-
-    function setFrequency(freq) {
-      currentFrequency = freq;
-
-      var toggles = document.querySelectorAll('.mode-toggle');
-      var freqBtns = toggles[1].querySelectorAll('.mode-btn');
-      freqBtns.forEach(function(btn){ btn.classList.remove('active'); });
-
-      if (freq === 'daily') freqBtns[0].classList.add('active');
-      if (freq === 'weekly') freqBtns[1].classList.add('active');
-      if (freq === 'monthly') freqBtns[2].classList.add('active');
-      if (freq === 'yearly') freqBtns[3].classList.add('active');
-
-      dopamine("🧭 " + freq.toUpperCase() + " quests loaded. Choose ONE.");
-      renderTasks();
-    }
-
     // -------------------- RENDER --------------------
-    function renderTasks() {
-      var grid = document.getElementById('taskGrid');
-      grid.innerHTML = '';
-
-      var taskSet = (TASKS[currentMode] && TASKS[currentMode][currentFrequency]) ? TASKS[currentMode][currentFrequency] : {};
-      Object.keys(taskSet).forEach(function(category) {
-        grid.appendChild(createTaskCard(currentFrequency, category, taskSet[category]));
-      });
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     function createTaskCard(freq, category, data) {
@@ -902,7 +804,7 @@
       for (var i = 0; i < data.tasks.length; i++) {
         var completedClass = isTaskCompleted(freq, category, i) ? 'completed' : '';
         tasksHtml +=
-          '<div class="task-item ' + completedClass + '" onclick="toggleTask(\'' + freq + '\', \'' + category + '\',' + i + ')">' +
+          '<div class="task-item ' + completedClass + '" data-action="toggleTask" data-freq="' + freq + '" data-category="' + category + '" data-index="' + i + '">' +
             '<div class="checkbox"></div>' +
             '<span class="task-text">' + escapeHtml(data.tasks[i]) + '</span>' +
           '</div>';
@@ -927,16 +829,118 @@
       return card;
     }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+    function renderTasks() {
+      var grid = document.getElementById('taskGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      var taskSet = (TASKS[currentMode] && TASKS[currentMode][currentFrequency]) ? TASKS[currentMode][currentFrequency] : {};
+      var keys = Object.keys(taskSet);
+
+      if (keys.length === 0) {
+        grid.innerHTML = '<div class="panel small">No tasks found for this mode/frequency.</div>';
+        return;
+      }
+
+      keys.forEach(function(category) {
+        grid.appendChild(createTaskCard(currentFrequency, category, taskSet[category]));
+      });
     }
 
-    // -------------------- LAUNDRY TIMER --------------------
+    // -------------------- TOGGLE TASK --------------------
+    function toggleTask(freq, category, taskIndex) {
+      var was = isTaskCompleted(freq, category, taskIndex);
+      var nowVal = !was;
+      setTaskCompleted(freq, category, taskIndex, nowVal);
+
+      if (nowVal) {
+        setCoins(getCoins() + 1);
+        playDing('task');
+        dopamine();
+
+        // streak only cares about daily tasks
+        if (freq === 'daily') {
+          reconcileStreak();
+          bumpStreakIfNeededToday();
+        }
+      }
+
+      renderTasks();
+      maybeDropRoomLoot(freq, category);
+      updateHUD();
+    }
+
+    // -------------------- MODE / FREQUENCY --------------------
+    function setMode(mode) {
+      currentMode = mode;
+      var btns = document.querySelectorAll('#modeToggle .mode-btn');
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      document.querySelector('#modeToggle .mode-btn[data-mode="' + mode + '"]').classList.add('active');
+      dopamine(mode === 'regular' ? "✨ Full spellbook unlocked. Pick ONE tiny win." : "💙 Bare minimum mode. Tiny is mighty.");
+      renderTasks();
+    }
+
+    function setFrequency(freq) {
+      currentFrequency = freq;
+      var btns = document.querySelectorAll('#freqToggle .mode-btn');
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      document.querySelector('#freqToggle .mode-btn[data-freq="' + freq + '"]').classList.add('active');
+      dopamine("🧭 " + freq.toUpperCase() + " quests loaded. Choose ONE.");
+      renderTasks();
+    }
+
+    // -------------------- MODALS / SHOP --------------------
+    function openShop() { document.getElementById('shopModal').style.display = 'block'; }
+    function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
+
+    function openLootLog() {
+      renderLootLog();
+      document.getElementById('lootModal').style.display = 'block';
+    }
+    function closeLootLog() { document.getElementById('lootModal').style.display = 'none'; }
+
+    function renderLootLog() {
+      var list = document.getElementById('lootList');
+      list.innerHTML = '';
+      var log = getLootLog();
+      if (log.length === 0) {
+        list.innerHTML = '<div class="small">No loot yet. Complete a room to trigger a loot drop ✨</div>';
+        return;
+      }
+      log.forEach(function(item) {
+        var div = document.createElement('div');
+        div.style.background = 'rgba(255,255,255,0.06)';
+        div.style.border = '1px solid rgba(255,255,255,0.10)';
+        div.style.borderRadius = '12px';
+        div.style.padding = '10px';
+        div.innerHTML = '<div style="font-weight:900;">' + escapeHtml(item.title) + '</div>' +
+                        '<div class="small">' + escapeHtml(item.when) + '</div>';
+        list.appendChild(div);
+      });
+    }
+
+    function buyShield() {
+      var coins = getCoins();
+      if (coins < 25) { dopamine("🚫 Not enough coins. Tiny quest first."); playDing('nope'); return; }
+      setCoins(coins - 25);
+      setShields(getShields() + 1);
+      addLootLog({ title: "🛡️ Bought a shield (-25 coins)", when: new Date().toLocaleString() });
+      dopamine("🛡️ Shield acquired. Future you is protected.");
+      playDing('shield');
+      updateHUD();
+    }
+
+    function buyReward(label, cost) {
+      var coins = getCoins();
+      if (coins < cost) { dopamine("🚫 Not enough coins. Tiny quest first."); playDing('nope'); return; }
+      setCoins(coins - cost);
+      addLootLog({ title: "✅ Redeemed: " + label + " (-" + cost + " coins)", when: new Date().toLocaleString() });
+      dopamine("✅ Redeemed: " + label + " — this is allowed.");
+      playDing('buy');
+      updateHUD();
+    }
+
+    // -------------------- TIMER --------------------
     function startTimer(minutes) {
       var endTime = new Date();
       endTime.setMinutes(endTime.getMinutes() + minutes);
@@ -981,34 +985,75 @@
     }
 
     // -------------------- RESET --------------------
-    function resetAll() {
+    function hardReset() {
       if (!confirm("Hard reset EVERYTHING? This clears tasks, coins, shields, streak, loot log.")) return;
-      localStorage.removeItem('cleaningTasksV3');
+      localStorage.removeItem('cleaningTasksV4');
       localStorage.removeItem('coins');
       localStorage.removeItem('shields');
       localStorage.removeItem('cleaningStreak');
       localStorage.removeItem('lootLog');
       localStorage.removeItem('roomLootedMap');
-      localStorage.removeItem('cycleId_daily');
-      localStorage.removeItem('cycleId_weekly');
-      localStorage.removeItem('cycleId_monthly');
-      localStorage.removeItem('cycleId_yearly');
-      updateTopBar();
+      localStorage.removeItem('streakLastChecked');
+      localStorage.removeItem('streakCountedFor');
+      updateHUD();
       renderTasks();
       dopamine("🧼 Hard reset complete. Fresh slate. Tiny quest time.");
     }
 
+    // -------------------- EVENT WIRING --------------------
+    function wireEvents() {
+      document.getElementById('openShopBtn').addEventListener('click', openShop);
+      document.getElementById('openLootBtn').addEventListener('click', openLootLog);
+      document.getElementById('closeShopBtn').addEventListener('click', closeShop);
+      document.getElementById('closeLootBtn').addEventListener('click', closeLootLog);
+      document.getElementById('hardResetBtn').addEventListener('click', hardReset);
+
+      document.getElementById('buyShieldBtn').addEventListener('click', buyShield);
+      document.querySelectorAll('.shopItem').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var cost = parseInt(btn.getAttribute('data-cost'), 10);
+          var label = btn.getAttribute('data-label');
+          buyReward(label, cost);
+        });
+      });
+
+      document.getElementById('washerBtn').addEventListener('click', function(){ startTimer(45); });
+      document.getElementById('dryerBtn').addEventListener('click', function(){ startTimer(60); });
+      document.getElementById('stopTimerBtn').addEventListener('click', stopTimer);
+
+      // Mode toggle
+      document.querySelectorAll('#modeToggle .mode-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){ setMode(btn.getAttribute('data-mode')); });
+      });
+
+      // Frequency toggle
+      document.querySelectorAll('#freqToggle .mode-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){ setFrequency(btn.getAttribute('data-freq')); });
+      });
+
+      // Delegated clicks for tasks
+      document.body.addEventListener('click', function(e){
+        var el = e.target;
+        while (el && el !== document.body) {
+          if (el.getAttribute && el.getAttribute('data-action') === 'toggleTask') {
+            var freq = el.getAttribute('data-freq');
+            var cat = el.getAttribute('data-category');
+            var idx = parseInt(el.getAttribute('data-index'), 10);
+            toggleTask(freq, cat, idx);
+            return;
+          }
+          el = el.parentNode;
+        }
+      });
+    }
+
     // -------------------- INIT --------------------
     document.addEventListener('DOMContentLoaded', function() {
-      // ensure cycles exist
-      getManualCycleId('daily');
-      getManualCycleId('weekly');
-      getManualCycleId('monthly');
-      getManualCycleId('yearly');
-
-      updateTopBar();
+      updateHUD();
+      wireEvents();
+      reconcileStreak();
       renderTasks();
-      dopamine("✨ Welcome back. Pick ONE tiny quest. Coins appear. Magic happens.");
+      dopamine("✨ Loaded. Pick ONE tiny quest. Coins appear. Magic happens.");
     });
   </script>
 </body>
