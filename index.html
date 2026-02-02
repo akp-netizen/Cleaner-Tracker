@@ -22,6 +22,7 @@
       --text: #F1F5F9;
       --text-dim: #94A3B8;
       --success: #10B981;
+      --danger: #EF4444;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,30 +48,26 @@
       margin-bottom: 10px;
     }
 
-    .tagline { color: var(--text-dim); font-size: 1rem; margin-bottom: 30px; }
+    .tagline { color: var(--text-dim); font-size: 1rem; margin-bottom: 18px; }
 
     .streak-hero {
       background: var(--surface);
       border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 30px;
-      text-align: center;
+      padding: 18px;
+      margin-bottom: 18px;
     }
 
-    .streak-number { font-size: 4rem; font-weight: 900; color: #FCD34D; }
-
-    .streak-info h2 { font-size: 1.5rem; margin: 10px 0; }
-
-    .mode-toggle { display: flex; gap: 10px; margin-bottom: 20px; }
+    .mode-toggle { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 
     .mode-btn {
       flex: 1;
-      padding: 15px;
-      background: var(--surface);
+      min-width: 180px;
+      padding: 12px;
+      background: rgba(255,255,255,0.06);
       border: 2px solid transparent;
       border-radius: 12px;
       color: var(--text);
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -97,6 +94,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
+      gap: 12px;
     }
 
     .task-title { display: flex; align-items: center; gap: 10px; }
@@ -104,11 +102,13 @@
     .task-title h3 { font-size: 1.25rem; }
 
     .task-badge {
-      padding: 5px 12px;
+      padding: 6px 12px;
       border-radius: 15px;
       font-size: 0.75rem;
       background: var(--daily);
       color: var(--bg);
+      font-weight: 800;
+      letter-spacing: 0.04em;
     }
 
     .task-list { display: flex; flex-direction: column; gap: 10px; }
@@ -121,6 +121,7 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
       cursor: pointer;
+      user-select: none;
     }
 
     .task-item:active { background: rgba(255,255,255,0.1); }
@@ -167,14 +168,14 @@
       height: 100%;
       background: var(--success);
       border-radius: 10px;
-      transition: width 0.3s ease;
+      transition: width 0.25s ease;
     }
 
     .laundry-timer {
       background: var(--basement);
       border-radius: 15px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .timer-display {
@@ -184,34 +185,107 @@
       margin: 15px 0;
     }
 
-    .timer-buttons { display: flex; gap: 10px; }
+    .timer-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
 
     .timer-btn {
       flex: 1;
+      min-width: 160px;
       padding: 12px;
       background: rgba(255,255,255,0.2);
       border: none;
       border-radius: 10px;
       color: white;
-      font-weight: 600;
+      font-weight: 800;
       cursor: pointer;
     }
 
     .timer-btn:active { background: rgba(255,255,255,0.3); }
 
     .reset-btn {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #EF4444;
+      padding: 8px 14px;
+      background: var(--danger);
       border: none;
       border-radius: 8px;
       color: white;
       cursor: pointer;
+      font-weight: 800;
     }
+
+    .topbar {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+
+    .pillrow {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .pill span { color: #FCD34D; }
+
+    /* Sparkles */
+    .spark {
+      position: fixed;
+      font-size: 18px;
+      pointer-events: none;
+      animation: sparkPop 0.9s ease-out forwards;
+      z-index: 99999;
+    }
+    @keyframes sparkPop {
+      0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translate(-50%, -120px) scale(1.3); opacity: 0; }
+    }
+
+    /* Modal */
+    .modalOverlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.6);
+      z-index:9999;
+      padding:20px;
+    }
+    .modal {
+      max-width: 680px;
+      margin: 60px auto;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .modalTitle {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 8px;
+    }
+    .modalTitle h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+    }
+    .modalHint { color: var(--text-dim); margin-bottom: 12px; }
+    .modalList { display:grid; gap:10px; }
+    .small { font-size: 0.9rem; color: var(--text-dim); }
 
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
-      .mode-toggle { flex-direction: column; }
+      .mode-btn { min-width: 140px; }
     }
   </style>
 </head>
@@ -220,25 +294,53 @@
   <div class="container">
     <header>
       <h1>✨ Clean House, Clear Mind</h1>
-      <p class="tagline">Your ADHD-friendly cleaning companion</p>
+      <p class="tagline">Your ADHD-friendly cleaning companion (with loot drops)</p>
     </header>
 
+    <!-- Top HUD -->
     <div class="streak-hero">
-      <div class="streak-number" id="streakNumber">0</div>
-      <div class="streak-info">
-        <h2>Day Streak! 🎉</h2>
-        <p>Keep that momentum going!</p>
-        <button class="reset-btn" onclick="resetStreak()">Reset Streak</button>
+      <div class="topbar">
+        <div class="pillrow">
+          <div class="pill">🪙 Coins: <span id="coinCount">0</span></div>
+          <div class="pill">🛡️ Shields: <span id="shieldCount">0</span></div>
+          <div class="pill">🔥 Streak: <span id="streakNumber">0</span></div>
+        </div>
+        <div class="pillrow">
+          <button class="timer-btn" onclick="openShop()">🛍️ Dopamine Shop</button>
+          <button class="timer-btn" onclick="openLootLog()">🎁 Loot Log</button>
+          <button class="reset-btn" onclick="resetAll()">Hard Reset</button>
+        </div>
+      </div>
+
+      <div class="pillrow" style="margin-top: 10px;">
+        <button class="timer-btn" onclick="manualStart('daily')">🌞 Start New Day</button>
+        <button class="timer-btn" onclick="manualStart('weekly')">📆 Start New Week</button>
+        <button class="timer-btn" onclick="manualStart('monthly')">🌙 Start New Month</button>
+        <button class="timer-btn" onclick="manualStart('yearly')">✨ Start New Year</button>
+      </div>
+
+      <div id="dopamineText" style="margin-top:10px; color: var(--text-dim);">
+        Pick ONE tiny quest. We do not require perfection. We require existence.
       </div>
     </div>
 
+    <!-- Mode toggle -->
     <div class="mode-toggle">
       <button class="mode-btn active" onclick="setMode('regular')">✨ Regular Mode</button>
       <button class="mode-btn" onclick="setMode('struggling')">💙 Bare Minimum</button>
     </div>
 
+    <!-- Frequency toggle -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="setFrequency('daily')">🌞 Daily</button>
+      <button class="mode-btn" onclick="setFrequency('weekly')">📆 Weekly</button>
+      <button class="mode-btn" onclick="setFrequency('monthly')">🌙 Monthly</button>
+      <button class="mode-btn" onclick="setFrequency('yearly')">✨ Yearly</button>
+    </div>
+
+    <!-- Laundry timer -->
     <div class="laundry-timer">
-      <h3>🧺 Laundry Timer</h3>
+      <h3 style="font-family:'Fraunces', serif;">🧺 Laundry Timer</h3>
       <div class="timer-display" id="timerDisplay">--:--</div>
       <div class="timer-buttons">
         <button class="timer-btn" onclick="startTimer(45)">Washer 45m</button>
@@ -247,141 +349,594 @@
       </div>
     </div>
 
+    <!-- Tasks -->
     <div class="task-grid" id="taskGrid"></div>
   </div>
 
+  <!-- Shop Modal -->
+  <div class="modalOverlay" id="shopModal">
+    <div class="modal">
+      <div class="modalTitle">
+        <h2>🛍️ Dopamine Shop</h2>
+        <button class="reset-btn" onclick="closeShop()">Close</button>
+      </div>
+      <div class="modalHint">Spend coins on rewards. Buy shields to protect streaks. Yes, that’s allowed.</div>
+
+      <div class="modalList">
+        <button class="timer-btn" onclick="buyShield()">🛡️ Buy 1 Shield (25 coins)</button>
+        <button class="timer-btn" onclick="buyReward('☕ Fancy drink token', 15)">☕ Fancy drink token (15)</button>
+        <button class="timer-btn" onclick="buyReward('🍫 Sweet treat token', 10)">🍫 Sweet treat token (10)</button>
+        <button class="timer-btn" onclick="buyReward('🛋️ 20-min guilt-free rest', 20)">🛋️ 20-min guilt-free rest (20)</button>
+        <button class="timer-btn" onclick="buyReward('🎧 Music + clean dance break', 12)">🎧 Music + clean dance break (12)</button>
+        <button class="timer-btn" onclick="buyReward('🕯️ Cozy reset ritual', 18)">🕯️ Cozy reset ritual (18)</button>
+      </div>
+
+      <div class="small" style="margin-top: 12px;">
+        Tip: Shields trigger when you start a new day without doing at least one Daily task.
+      </div>
+    </div>
+  </div>
+
+  <!-- Loot Log Modal -->
+  <div class="modalOverlay" id="lootModal">
+    <div class="modal">
+      <div class="modalTitle">
+        <h2>🎁 Loot Log</h2>
+        <button class="reset-btn" onclick="closeLootLog()">Close</button>
+      </div>
+      <div class="modalHint">Your wins count. Receipts for your brain.</div>
+      <div id="lootList" class="modalList"></div>
+      <div class="small" style="margin-top: 12px;">
+        Loot drops happen when you complete a room (100% progress).
+      </div>
+    </div>
+  </div>
+
   <script>
+    // -------------------- TASK DATA --------------------
     var TASKS = {
       regular: {
-        kitchen: { name: 'Kitchen', icon: '🍳', color: 'kitchen', tasks: [
-          'Wipe down counters and stove', 'Load/run dishwasher', 'Take out trash if full', 'Wipe down table'
-        ]},
-        living: { name: 'Living Areas', icon: '🛋️', color: 'living', tasks: [
-          '5-minute pickup', 'Fluff couch pillows', 'Clear coffee table', 'Change main floor litter box bag'
-        ]},
-        master: { name: 'Master Suite', icon: '👑', color: 'master', tasks: [
-          'Make bed', 'Dirty clothes in hamper', 'Clear nightstands', 'Tidy dressing room'
-        ]},
-        boys: { name: "Boys' Rooms", icon: '🚀', color: 'boys', tasks: [
-          "Make Freddie's bed", "Make Henry's bed", 'Clothes in hampers', 'Quick pickup'
-        ]},
-        bathrooms: { name: 'Bathrooms', icon: '🛁', color: 'bathrooms', tasks: [
-          'Wipe down counters', 'Quick toilet swish', 'Hang up towels'
-        ]},
-        laundry: { name: 'Laundry', icon: '🧺', color: 'basement', tasks: [
-          'One load in washer', 'Move washer to dryer', 'Fold one load', 'Change basement litter box bag'
-        ]}
+        daily: {
+          kitchen: { name: 'Kitchen', icon: '🍳', color: 'kitchen', tasks: [
+            'Wipe counters + stove', 'Load/run dishwasher', 'Trash check', 'Table wipe'
+          ]},
+          living: { name: 'Living Areas', icon: '🛋️', color: 'living', tasks: [
+            '5-minute pickup', 'Clear coffee table', 'Fluff couch pillows', 'Main floor litter bag'
+          ]},
+          master: { name: 'Master Suite', icon: '👑', color: 'master', tasks: [
+            'Make bed (ish)', 'Clothes in hamper', 'Nightstands reset'
+          ]},
+          boys: { name: "Boys' Rooms", icon: '🚀', color: 'boys', tasks: [
+            "Freddie bed (ish)", "Henry bed (ish)", 'Clothes in hampers', 'Floor sweep (1 min)'
+          ]},
+          bathrooms: { name: 'Bathrooms', icon: '🛁', color: 'bathrooms', tasks: [
+            'Wipe counters', 'Quick toilet swish', 'Hang towels'
+          ]},
+          laundry: { name: 'Laundry', icon: '🧺', color: 'basement', tasks: [
+            'One load started', 'Move washer → dryer', 'Fold ONE basket'
+          ]}
+        },
+
+        weekly: {
+          kitchen: { name: 'Kitchen', icon: '🍳', color: 'kitchen', tasks: [
+            'Clean microwave', 'Wipe cabinet fronts', 'Fridge shelf quick wipe', 'Sweep + mop'
+          ]},
+          living: { name: 'Living Areas', icon: '🛋️', color: 'living', tasks: [
+            'Vacuum main areas', 'Dust surfaces', 'Couch blanket wash', 'Entryway reset'
+          ]},
+          master: { name: 'Master Suite', icon: '👑', color: 'master', tasks: [
+            'Change sheets', 'Vacuum', 'Mirror wipe'
+          ]},
+          boys: { name: "Boys' Rooms", icon: '🚀', color: 'boys', tasks: [
+            'Trash out', 'Vacuum', 'Desk/top surfaces wipe'
+          ]},
+          bathrooms: { name: 'Bathrooms', icon: '🛁', color: 'bathrooms', tasks: [
+            'Full toilet clean', 'Mirror + sink scrub', 'Replace towels', 'Swap bath mats'
+          ]},
+          laundry: { name: 'Laundry', icon: '🧺', color: 'basement', tasks: [
+            'Wash towels', 'Wash bedding', 'Lint trap + wipe dryer top'
+          ]}
+        },
+
+        monthly: {
+          kitchen: { name: 'Kitchen', icon: '🍳', color: 'kitchen', tasks: [
+            'Deep clean fridge (15 min)', 'Run dishwasher cleaner', 'Wipe baseboards'
+          ]},
+          living: { name: 'Living Areas', icon: '🛋️', color: 'living', tasks: [
+            'Vacuum couch + under cushions', 'Wipe light switches', 'Windows quick clean'
+          ]},
+          master: { name: 'Master Suite', icon: '👑', color: 'master', tasks: [
+            'Closet sweep + donate bag', 'Wipe baseboards'
+          ]},
+          boys: { name: "Boys' Rooms", icon: '🚀', color: 'boys', tasks: [
+            'Toy purge bucket', 'Sheets wash (again)', 'Baseboards quick wipe'
+          ]},
+          bathrooms: { name: 'Bathrooms', icon: '🛁', color: 'bathrooms', tasks: [
+            'Shower deep clean', 'Restock supplies', 'Drain hair check'
+          ]},
+          laundry: { name: 'Laundry', icon: '🧺', color: 'basement', tasks: [
+            'Wipe washer gasket', 'Clean dryer vent area', 'Restock detergent'
+          ]}
+        },
+
+        yearly: {
+          kitchen: { name: 'Kitchen', icon: '🍳', color: 'kitchen', tasks: [
+            'Clean oven', 'Pull fridge, vacuum coils', 'Pantry purge'
+          ]},
+          living: { name: 'Living Areas', icon: '🛋️', color: 'living', tasks: [
+            'Curtains wash', 'Carpet shampoo / deep vacuum', 'Deep dust vents'
+          ]},
+          master: { name: 'Master Suite', icon: '👑', color: 'master', tasks: [
+            'Mattress rotate', 'Under-bed purge'
+          ]},
+          boys: { name: "Boys' Rooms", icon: '🚀', color: 'boys', tasks: [
+            'Seasonal clothing swap', 'Big toy/lego sort'
+          ]},
+          bathrooms: { name: 'Bathrooms', icon: '🛁', color: 'bathrooms', tasks: [
+            'Replace shower liner', 'Grout touch-up (if needed)'
+          ]},
+          laundry: { name: 'Laundry', icon: '🧺', color: 'basement', tasks: [
+            'Washer deep clean cycle', 'Dryer vent deep clean'
+          ]}
+        }
       },
+
       struggling: {
-        essential: { name: 'Bare Minimum', icon: '💙', color: 'living', tasks: [
-          'Dishes in dishwasher', 'Laundry in hamper', 'Bed somewhat made', 'Change litter box bags', 'STOP. Rest.'
-        ]}
+        daily: {
+          essential: { name: 'Bare Minimum', icon: '💙', color: 'living', tasks: [
+            'Dishes contained (sink or dishwasher)',
+            'Trash in a bag',
+            'Laundry in hamper',
+            'Litter bags changed',
+            'STOP. Rest.'
+          ]}
+        },
+        weekly: {
+          essential: { name: 'Bare Minimum', icon: '💙', color: 'living', tasks: [
+            'Fresh sheets OR pillowcases',
+            'One bathroom wipe',
+            'One vacuum lane',
+            'One load laundry'
+          ]}
+        },
+        monthly: {
+          essential: { name: 'Bare Minimum', icon: '💙', color: 'living', tasks: [
+            'Donate bag started',
+            'Restock paper products'
+          ]}
+        },
+        yearly: {
+          essential: { name: 'Bare Minimum', icon: '💙', color: 'living', tasks: [
+            'One big reset day (pick a room)'
+          ]}
+        }
       }
     };
 
+    // -------------------- STATE --------------------
     var currentMode = 'regular';
+    var currentFrequency = 'daily';
+
     var timerInterval = null;
     var timerEndTime = null;
 
+    // -------------------- DOPAMINE / REWARDS --------------------
+    var REWARDS = [
+      "✨ Nice. That counts. Your brain likes receipts.",
+      "🪄 You just cast 'Cleanus Minimus'. It's effective.",
+      "🔥 Momentum achieved. Keep it messy in your favor.",
+      "💎 Dopamine acquired. Collect another?",
+      "🌈 Look at you being a functional wizard.",
+      "🧠 Executive function cameo. Rare drop!"
+    ];
+
+    var LOOT_TABLE = [
+      { text: '🍬 Candy drop', coins: 3 },
+      { text: '✨ Sparkle boost', coins: 4 },
+      { text: '☕ Coffee energy', coins: 5 },
+      { text: '🕯️ Cozy vibes', coins: 4 },
+      { text: '🎶 Cleaning anthem moment', coins: 3 },
+      { text: '🧠 Executive function cameo', coins: 6 }
+    ];
+
+    function dopamine(msg) {
+      var el = document.getElementById('dopamineText');
+      if (!el) return;
+      el.textContent = msg || REWARDS[Math.floor(Math.random() * REWARDS.length)];
+      popConfetti();
+    }
+
+    function popConfetti() {
+      for (var i = 0; i < 16; i++) {
+        var s = document.createElement('span');
+        s.className = 'spark';
+        s.textContent = ['✨','💫','⭐','🌟'][Math.floor(Math.random()*4)];
+        s.style.left = (50 + (Math.random()*70 - 35)) + '%';
+        s.style top = (25 + Math.random()*20) + '%';
+        s.style.top = (25 + Math.random()*20) + '%';
+        document.body.appendChild(s);
+        (function(node){ setTimeout(function(){ node.remove(); }, 900); })(s);
+      }
+    }
+
+    // -------------------- AUDIO (no external files) --------------------
+    function playDing(type) {
+      try {
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        var o = ctx.createOscillator();
+        var g = ctx.createGain();
+        o.connect(g);
+        g.connect(ctx.destination);
+
+        var now = ctx.currentTime;
+        var freq = 880;
+        var dur = 0.08;
+
+        if (type === 'loot') { freq = 1046.5; dur = 0.12; }
+        if (type === 'buy') { freq = 659.25; dur = 0.10; }
+        if (type === 'shield') { freq = 523.25; dur = 0.10; }
+
+        o.type = 'sine';
+        o.frequency.setValueAtTime(freq, now);
+
+        g.gain.setValueAtTime(0.0001, now);
+        g.gain.exponentialRampToValueAtTime(0.25, now + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+        o.start(now);
+        o.stop(now + dur + 0.02);
+        setTimeout(function(){ ctx.close(); }, 250);
+      } catch(e) {}
+    }
+
+    // -------------------- MANUAL CYCLES --------------------
+    function getManualCycleId(freq) {
+      var key = 'cycleId_' + freq;
+      var val = localStorage.getItem(key);
+      if (!val) {
+        val = String(Date.now());
+        localStorage.setItem(key, val);
+      }
+      return val;
+    }
+
+    function bumpManualCycleId(freq) {
+      var key = 'cycleId_' + freq;
+      var val = String(Date.now());
+      localStorage.setItem(key, val);
+      return val;
+    }
+
+    function getPeriodKey(freq) {
+      return freq.toUpperCase() + ':' + getManualCycleId(freq);
+    }
+
+    // -------------------- STORAGE HELPERS --------------------
     function loadData() {
       try {
-        var saved = localStorage.getItem('cleaningTasks');
-        var streak = localStorage.getItem('cleaningStreak');
-        if (streak) document.getElementById('streakNumber').textContent = streak;
+        var saved = localStorage.getItem('cleaningTasksV3');
         return saved ? JSON.parse(saved) : {};
-      } catch (e) { return {}; }
+      } catch(e) { return {}; }
     }
 
     function saveData(data) {
-      try { localStorage.setItem('cleaningTasks', JSON.stringify(data)); } catch (e) {}
+      try { localStorage.setItem('cleaningTasksV3', JSON.stringify(data)); } catch(e) {}
     }
 
-    function saveStreak(streak) {
-      try {
-        localStorage.setItem('cleaningStreak', String(streak));
-        document.getElementById('streakNumber').textContent = String(streak);
-      } catch (e) {}
+    function getCoins() { return parseInt(localStorage.getItem('coins') || '0', 10); }
+    function setCoins(n) { localStorage.setItem('coins', String(Math.max(0, n))); updateTopBar(); }
+
+    function getShields() { return parseInt(localStorage.getItem('shields') || '0', 10); }
+    function setShields(n) { localStorage.setItem('shields', String(Math.max(0, n))); updateTopBar(); }
+
+    function getStreak() { return parseInt(localStorage.getItem('cleaningStreak') || '0', 10); }
+    function setStreak(n) { localStorage.setItem('cleaningStreak', String(Math.max(0, n))); updateTopBar(); }
+
+    function updateTopBar() {
+      var c = document.getElementById('coinCount');
+      var s = document.getElementById('shieldCount');
+      var st = document.getElementById('streakNumber');
+      if (c) c.textContent = String(getCoins());
+      if (s) s.textContent = String(getShields());
+      if (st) st.textContent = String(getStreak());
     }
 
-    function resetStreak() {
-      if (confirm('Reset your streak?')) saveStreak(0);
+    function getLootLog() {
+      try { return JSON.parse(localStorage.getItem('lootLog') || '[]'); } catch(e) { return []; }
+    }
+    function addLootLog(entry) {
+      var log = getLootLog();
+      log.unshift(entry);
+      log = log.slice(0, 50);
+      localStorage.setItem('lootLog', JSON.stringify(log));
     }
 
-    function isTaskCompleted(category, taskIndex) {
+    function getRoomLootedMap() {
+      try { return JSON.parse(localStorage.getItem('roomLootedMap') || '{}'); } catch(e) { return {}; }
+    }
+    function setRoomLootedMap(obj) {
+      localStorage.setItem('roomLootedMap', JSON.stringify(obj));
+    }
+
+    // -------------------- SHOP + LOOT UI --------------------
+    function openShop() { document.getElementById('shopModal').style.display = 'block'; }
+    function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
+
+    function openLootLog() {
+      renderLootLog();
+      document.getElementById('lootModal').style.display = 'block';
+    }
+    function closeLootLog() { document.getElementById('lootModal').style.display = 'none'; }
+
+    function renderLootLog() {
+      var list = document.getElementById('lootList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      var log = getLootLog();
+      if (log.length === 0) {
+        list.innerHTML = '<div class="small">No loot yet. Complete a room to trigger a loot drop ✨</div>';
+        return;
+      }
+
+      log.forEach(function(item) {
+        var div = document.createElement('div');
+        div.style.background = 'rgba(255,255,255,0.06)';
+        div.style.border = '1px solid rgba(255,255,255,0.10)';
+        div.style.borderRadius = '12px';
+        div.style.padding = '10px';
+        div.innerHTML = '<div style="font-weight:900;">' + escapeHtml(item.title) + '</div>' +
+                        '<div class="small">' + escapeHtml(item.when) + '</div>';
+        list.appendChild(div);
+      });
+    }
+
+    function buyShield() {
+      var coins = getCoins();
+      if (coins < 25) {
+        dopamine("🚫 Not enough coins. Do one tiny task and we’ll talk.");
+        playDing('nope');
+        return;
+      }
+      setCoins(coins - 25);
+      setShields(getShields() + 1);
+      addLootLog({ title: "🛡️ Bought a shield (-25 coins)", when: new Date().toLocaleString() });
+      dopamine("🛡️ Shield acquired. Future you is protected.");
+      playDing('shield');
+    }
+
+    function buyReward(label, cost) {
+      var coins = getCoins();
+      if (coins < cost) {
+        dopamine("🚫 Not enough coins. Tiny quest first.");
+        playDing('nope');
+        return;
+      }
+      setCoins(coins - cost);
+      addLootLog({ title: "✅ Redeemed: " + label + " (-" + cost + " coins)", when: new Date().toLocaleString() });
+      dopamine("✅ Reward redeemed: " + label + " — go enjoy it like it’s a rule.");
+      playDing('buy');
+    }
+
+    // -------------------- TASK COMPLETION --------------------
+    function isTaskCompleted(freq, category, taskIndex) {
       var data = loadData();
-      var today = new Date().toDateString();
-      return !!(data[today] && data[today][category] && data[today][category][taskIndex]);
+      var key = getPeriodKey(freq);
+      return !!(data[key] && data[key][category] && data[key][category][taskIndex]);
     }
 
-    function toggleTask(category, taskIndex) {
+    function setTaskCompleted(freq, category, taskIndex, value) {
       var data = loadData();
-      var today = new Date().toDateString();
+      var key = getPeriodKey(freq);
 
-      if (!data[today]) data[today] = {};
-      if (!data[today][category]) data[today][category] = {};
+      if (!data[key]) data[key] = {};
+      if (!data[key][category]) data[key][category] = {};
+      data[key][category][taskIndex] = !!value;
 
-      data[today][category][taskIndex] = !data[today][category][taskIndex];
       saveData(data);
+    }
+
+    function toggleTask(freq, category, taskIndex) {
+      var was = isTaskCompleted(freq, category, taskIndex);
+      var nowVal = !was;
+      setTaskCompleted(freq, category, taskIndex, nowVal);
+
+      if (nowVal) {
+        // coin per task + ding
+        setCoins(getCoins() + 1);
+        playDing('task');
+        dopamine();
+      }
 
       renderTasks();
+      // room loot check after render so % is correct
+      maybeDropRoomLoot(freq, category);
     }
 
+    function getRoomProgress(freq, category, tasks) {
+      var completed = 0;
+      for (var i = 0; i < tasks.length; i++) {
+        if (isTaskCompleted(freq, category, i)) completed++;
+      }
+      var total = tasks.length;
+      var percent = total ? Math.round((completed / total) * 100) : 0;
+      return { completed: completed, total: total, percent: percent };
+    }
+
+    function maybeDropRoomLoot(freq, category) {
+      // only when 100% AND not already looted for this room in this cycle
+      var taskSet = TASKS[currentMode] && TASKS[currentMode][freq] ? TASKS[currentMode][freq] : {};
+      if (!taskSet[category]) return;
+
+      var tasks = taskSet[category].tasks;
+      var prog = getRoomProgress(freq, category, tasks);
+      if (prog.percent < 100) return;
+
+      var cycleKey = getPeriodKey(freq);
+      var lootKey = cycleKey + '::' + currentMode + '::' + category;
+
+      var lootedMap = getRoomLootedMap();
+      if (lootedMap[lootKey]) return;
+
+      lootedMap[lootKey] = true;
+      setRoomLootedMap(lootedMap);
+
+      // drop loot
+      var drop = LOOT_TABLE[Math.floor(Math.random() * LOOT_TABLE.length)];
+      setCoins(getCoins() + drop.coins);
+
+      addLootLog({
+        title: "🎁 Loot drop: " + drop.text + " (+" + drop.coins + " coins) — " + taskSet[category].name + " completed!",
+        when: new Date().toLocaleString()
+      });
+
+      dopamine("🎁 LOOT DROP! " + drop.text + " (+" + drop.coins + " coins)");
+      playDing('loot');
+    }
+
+    // -------------------- STREAK + SHIELD SYSTEM --------------------
+    // Rule: Streak is based on "New Day" presses.
+    // If you start a new day and you DID at least one daily task in the previous day cycle -> streak +1
+    // If you did none -> use shield if available (streak stays), otherwise streak resets to 0
+    function dailyCycleHadAnyTask(cycleId) {
+      var data = loadData();
+      var key = 'DAILY:' + cycleId;
+      var dayData = data[key];
+      if (!dayData) return false;
+
+      // any true in any category
+      for (var cat in dayData) {
+        if (!dayData.hasOwnProperty(cat)) continue;
+        var obj = dayData[cat];
+        for (var idx in obj) {
+          if (obj.hasOwnProperty(idx) && obj[idx] === true) return true;
+        }
+      }
+      return false;
+    }
+
+    function manualStart(freq) {
+      if (!confirm("Start a new " + freq + "? This resets the checklist for that period.")) return;
+
+      // If starting a new day, handle streak + shield.
+      if (freq === 'daily') {
+        var prevCycle = getManualCycleId('daily');
+        var didSomething = dailyCycleHadAnyTask(prevCycle);
+
+        if (didSomething) {
+          setStreak(getStreak() + 1);
+          dopamine("🔥 Streak +1! You did at least one thing. That’s the whole spell.");
+        } else {
+          var shields = getShields();
+          if (shields > 0) {
+            setShields(shields - 1);
+            dopamine("🛡️ Shield used. Streak protected. We do not punish survival.");
+            addLootLog({ title: "🛡️ Shield used to protect streak", when: new Date().toLocaleString() });
+            playDing('shield');
+          } else {
+            setStreak(0);
+            dopamine("💙 New day. Fresh start. No shame. Pick ONE tiny quest.");
+          }
+        }
+      }
+
+      // bump cycle
+      bumpManualCycleId(freq);
+
+      // also clear room-looted flags for that freq cycle naturally (they key off cycle id)
+      renderTasks();
+      updateTopBar();
+      playDing('buy');
+    }
+
+    // -------------------- MODE + FREQUENCY --------------------
     function setMode(mode) {
       currentMode = mode;
-      var buttons = document.querySelectorAll('.mode-btn');
-      buttons.forEach(function(btn){ btn.classList.remove('active'); });
-      if (mode === 'regular') buttons[0].classList.add('active');
-      else buttons[1].classList.add('active');
+
+      var toggles = document.querySelectorAll('.mode-toggle');
+      var modeBtns = toggles[0].querySelectorAll('.mode-btn');
+      modeBtns.forEach(function(btn){ btn.classList.remove('active'); });
+      if (mode === 'regular') modeBtns[0].classList.add('active');
+      else modeBtns[1].classList.add('active');
+
+      dopamine(mode === 'regular'
+        ? "✨ Full spellbook unlocked. Pick ONE tiny win."
+        : "💙 Bare minimum mode. Tiny is mighty."
+      );
+
       renderTasks();
     }
 
+    function setFrequency(freq) {
+      currentFrequency = freq;
+
+      var toggles = document.querySelectorAll('.mode-toggle');
+      var freqBtns = toggles[1].querySelectorAll('.mode-btn');
+      freqBtns.forEach(function(btn){ btn.classList.remove('active'); });
+
+      if (freq === 'daily') freqBtns[0].classList.add('active');
+      if (freq === 'weekly') freqBtns[1].classList.add('active');
+      if (freq === 'monthly') freqBtns[2].classList.add('active');
+      if (freq === 'yearly') freqBtns[3].classList.add('active');
+
+      dopamine("🧭 " + freq.toUpperCase() + " quests loaded. Choose ONE.");
+      renderTasks();
+    }
+
+    // -------------------- RENDER --------------------
     function renderTasks() {
       var grid = document.getElementById('taskGrid');
       grid.innerHTML = '';
 
-      var taskSet = TASKS[currentMode];
+      var taskSet = (TASKS[currentMode] && TASKS[currentMode][currentFrequency]) ? TASKS[currentMode][currentFrequency] : {};
       Object.keys(taskSet).forEach(function(category) {
-        grid.appendChild(createTaskCard(category, taskSet[category]));
+        grid.appendChild(createTaskCard(currentFrequency, category, taskSet[category]));
       });
     }
 
-    function createTaskCard(category, data) {
+    function createTaskCard(freq, category, data) {
       var card = document.createElement('div');
       card.className = 'task-card ' + data.color;
 
       var tasksHtml = '';
-      data.tasks.forEach(function(task, index) {
-        var completedClass = isTaskCompleted(category, index) ? 'completed' : '';
+      for (var i = 0; i < data.tasks.length; i++) {
+        var completedClass = isTaskCompleted(freq, category, i) ? 'completed' : '';
         tasksHtml +=
-          '<div class="task-item ' + completedClass + '" onclick="toggleTask(\'' + category + '\',' + index + ')">' +
+          '<div class="task-item ' + completedClass + '" onclick="toggleTask(\'' + freq + '\', \'' + category + '\',' + i + ')">' +
             '<div class="checkbox"></div>' +
-            '<span class="task-text">' + task + '</span>' +
+            '<span class="task-text">' + escapeHtml(data.tasks[i]) + '</span>' +
           '</div>';
-      });
+      }
 
-      var completed = 0;
-      var total = data.tasks.length;
-      for (var i = 0; i < total; i++) if (isTaskCompleted(category, i)) completed++;
-
-      var percent = total ? Math.round((completed / total) * 100) : 0;
+      var prog = getRoomProgress(freq, category, data.tasks);
 
       card.innerHTML =
         '<div class="task-header">' +
           '<div class="task-title">' +
             '<span class="task-icon">' + data.icon + '</span>' +
-            '<h3>' + data.name + '</h3>' +
+            '<h3>' + escapeHtml(data.name) + '</h3>' +
           '</div>' +
-          '<span class="task-badge">Daily</span>' +
+          '<span class="task-badge">' + freq.toUpperCase() + '</span>' +
         '</div>' +
         '<div class="task-list">' + tasksHtml + '</div>' +
         '<div class="progress-section">' +
-          '<div class="progress-label"><span>Progress</span><span>' + percent + '%</span></div>' +
-          '<div class="progress-bar"><div class="progress-fill" style="width:' + percent + '%"></div></div>' +
+          '<div class="progress-label"><span>Progress</span><span>' + prog.percent + '%</span></div>' +
+          '<div class="progress-bar"><div class="progress-fill" style="width:' + prog.percent + '%"></div></div>' +
         '</div>';
 
       return card;
     }
 
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // -------------------- LAUNDRY TIMER --------------------
     function startTimer(minutes) {
       var endTime = new Date();
       endTime.setMinutes(endTime.getMinutes() + minutes);
@@ -390,6 +945,8 @@
       if (timerInterval) clearInterval(timerInterval);
       timerInterval = setInterval(updateTimerDisplay, 1000);
       updateTimerDisplay();
+      dopamine("🧺 Timer started. Future you says thank you.");
+      playDing('task');
     }
 
     function stopTimer() {
@@ -397,6 +954,8 @@
       timerInterval = null;
       timerEndTime = null;
       document.getElementById('timerDisplay').textContent = '--:--';
+      dopamine("⏹️ Timer stopped. No shame. We pivot.");
+      playDing('buy');
     }
 
     function updateTimerDisplay() {
@@ -409,6 +968,8 @@
         stopTimer();
         document.getElementById('timerDisplay').textContent = '00:00';
         alert('Timer finished!');
+        dopamine("🎉 Laundry level-up unlocked.");
+        playDing('loot');
         return;
       }
 
@@ -419,8 +980,35 @@
         (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    // -------------------- RESET --------------------
+    function resetAll() {
+      if (!confirm("Hard reset EVERYTHING? This clears tasks, coins, shields, streak, loot log.")) return;
+      localStorage.removeItem('cleaningTasksV3');
+      localStorage.removeItem('coins');
+      localStorage.removeItem('shields');
+      localStorage.removeItem('cleaningStreak');
+      localStorage.removeItem('lootLog');
+      localStorage.removeItem('roomLootedMap');
+      localStorage.removeItem('cycleId_daily');
+      localStorage.removeItem('cycleId_weekly');
+      localStorage.removeItem('cycleId_monthly');
+      localStorage.removeItem('cycleId_yearly');
+      updateTopBar();
       renderTasks();
+      dopamine("🧼 Hard reset complete. Fresh slate. Tiny quest time.");
+    }
+
+    // -------------------- INIT --------------------
+    document.addEventListener('DOMContentLoaded', function() {
+      // ensure cycles exist
+      getManualCycleId('daily');
+      getManualCycleId('weekly');
+      getManualCycleId('monthly');
+      getManualCycleId('yearly');
+
+      updateTopBar();
+      renderTasks();
+      dopamine("✨ Welcome back. Pick ONE tiny quest. Coins appear. Magic happens.");
     });
   </script>
 </body>
